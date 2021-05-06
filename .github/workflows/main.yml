@@ -1,0 +1,30 @@
+# give workflow a name
+# this name appears on any pull req or in the Actions tab
+# useful when there are multiple workflows in your repo
+name: A workflow for my Hello World file
+# indicates that your workflow will execute anytime code is pushed to your repo
+# by using the push event
+on: push
+
+# next, specify a job or jobs to run
+# workflow piece together jobs, and jobs piece together steps
+
+# jobs: base component of a workflow run
+# build: identifier we're attaching to this job
+# name: the name of the job, this is displayed on Github when the workflow is running
+# runs-on: defines the type of machine to run the job on
+# steps: linear sequence of operations that make up a job
+#      # uses: actions/checkout@v1
+#        use a community action called `checkout` to allow the workflow to access the contents of the repo
+#      # uses: ./actions-a
+#        proves the relative path to the action we created in the action-a directory of the repo
+#      # with: used to specify the input variables that will be avaliable to your action in the runtime env
+jobs:
+  build:
+    name: Hello world action
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ./action-a
+        with:
+          MY_NAME: "Mona"

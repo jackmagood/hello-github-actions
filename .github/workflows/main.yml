@@ -1,2 +1,20 @@
+# give workflow a name
+# this name appears on any pull req or in the Actions tab
+# useful when there are multiple workflows in your repo
 name: A workflow for my Hello World file
+# indicates that your workflow will execute anytime code is pushed to your repo
+# by using the push event
 on: push
+
+# next, specify a job or jobs to run
+# workflow piece together jobs, and jobs piece together steps
+
+jobs:
+  build:
+    name: Hello world action
+    runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v1
+    - uses: ./action-a
+      with:
+        MY_NAME: "Mona"
